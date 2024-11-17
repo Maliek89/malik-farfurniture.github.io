@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Malik Design and Furniture</title>
+        <script src="https://unpkg.com/feather-icons"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+<link
+                href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+                rel="stylesheet"
+            />
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <link rel="stylesheet" href="style.css" />
+        
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        
+    </head>
+    <body>
+        <nav class="navbar" x-data>
+            <a href="#" class="navbar-logo">Maliek<span>Design</span>.</a>
+            <div class="navbar-nav">
+                <a href="#home">Home</a>
+                <a href="#about">Tentang Saya</a>
+                <a href="#menu">Desain</a>
+                <a href="#product">Furniture</a>
+                <a href="#contact">Kontak</a>
+            </div>
+            <div class="navbar-extra">
+                <a href="#" id="search-button"><i data-feather="search"></i></a>
+                <a href="#" id="shopping-cart-button"
+                    >
+                  <i data-feather="shopping-cart"></i> <span class="quantity-badge" x-show = "$store.cart.quantity"x-text="$store.cart.quantity"></span>
+                  </a>
+                <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+            </div>
+            <div class="search-form">
+              <input type="search" id="search-box" placeholder="search here...">
+              <label for="search-box"><i data-feather="search"></i></label>
+            </div>
+            <div class="shopping-cart">
+  <template x-for="(item, index) in $store.cart.items" :key="index">
+    <div class="cart-item">
+      <img :src="item.img" :alt="item.name">
+      <div class="item-detail">
+        <h3 x-text="item.name"></h3>
+        <div class="item-price">
+          <span x-text="rupiah(item.price)"></span>&times;
+          <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+          <span x-text="item.quantity"></span>
+          <button id="add" @click="$store.cart.addItem(item)">+</button>
+          <span x-text="rupiah(item.total)"></span>
+        </div>
+      </div>
+    </div>
+  </template>
+  <h4 x-show="!$store.cart.items.length"style="margin-top: 1rem;">cart is empty</h4>
+  <h4 x-show="$store.cart.items.length">Total: <span x-text="rupiah($store.cart.total)"></span></h4>
+  <div class="form-container"x-show="$store.cart.items.length">
+<form action="" id="checkoutForm" disabled>
+      <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)">
+      <input type="hidden" name="total" x-model="$store.cart.total">
+      <h5>Customer detail</h5>
+      <label for="name">
+        <span>Name</span>
+        <input type="text" name="name" id="name">
+      </label>
+      <label for="email">
+        <span>Email</span>
+        <input type="email" name="email" id="email">
+      </label>
+      <label for="phone">
+        <span>Phone</span>
+        <input type="number" name="phone" id="phone" autocomplete="off">
+      </label>
+      <button class="checkout-button disabled" type="submit" id="checkout-button">Checkout</button>
+</form>
+  </div>
+  </div>
+            </nav>
+<section class="hero" id="home">
+  <div class="mask-container">
+  <main class="content">
+   <h1 class="judul">Pesan <span>furniture</span> dan <span>desain </span>bebas custom.</h1>
+     <p class="malik">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, at.</p>
+  </main>
+  </div>
+</section>
+<section id="about" class="about">
+  <h2><span>Tentang</span> Saya</h2>
+  <div class="row">
+    <div class="about-image">
+      <img src="heroes.png" alt="Tentang Kami" />
+    </div>
+    <div class="content">
+      <h3>Kenapa Memilih Desain Saya</h3>
+      <p id="malik">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea doloremque quos soluta, tempora ab eaque.</p>
+      <p id="malik">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ratione quo, non ipsa aut voluptatibus eligendi quam maxime vero blanditiis.</p>
+      <h3>Kenapa Memilih Furniture Saya</h3>
+      <p id="malik">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem maxime voluptatem voluptates quos vitae neque.</p>
+      <p id="malik">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, atque!</p>
+    </div>
+  </div>
+</section>
+<section id="menu" class="menu">
+   <h2><span>Project</span> Desain</h2>
+   <p id="malik">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis consequatur magnam assumenda illo.</p>
+   <div class="row">
+     <div class="menu-card">
+       <img src="supra.jpg" alt="supra" class="menu-card-img" data-aos="flip-right">
+       <h3 class="menu-card-title"> - Vector Motor - </h3>
+       <p class="menu-card-price">IDR ???</p>
+     </div>
+     <div class="menu-card">
+       <img src="oni.png" alt="Oni" class="menu-card-img"data-aos="flip-left">
+       <h3 class="menu-card-title"> - Mascot Oni - </h3>
+       <p class="menu-card-price">IDR ???</p>
+     </div>
+     <div class="menu-card">
+       <img src="java.jpg" alt="Java" class="menu-card-img"data-aos="flip-right">
+       <h3 class="menu-card-title"> - Mascot Java Oni - </h3>
+       <p class="menu-card-price">IDR ???</p>
+     </div>
+     <div class="menu-card">
+       <img src="metal.png" alt="Metal" class="menu-card-img" data-aos="flip-left">
+       <h3 class="menu-card-title"> - Mascot Metal - </h3>
+       <p class="menu-card-price">IDR ???</p>
+     </div>
+     <div class="menu-card">
+       <img src="skull.png" alt="Skull" class="menu-card-img"data-aos="flip-right">
+       <h3 class="menu-card-title"> - Skull Peace - </h3>
+       <p class="menu-card-price">IDR ???</p>
+     </div>
+     <div class="menu-card">
+       <img src="mascot.jpg" alt="Mascot" class="menu-card-img"data-aos="flip-left">
+       <h3 class="menu-card-title"> - Mascot Colorfull - </h3>
+       <p class="menu-card-price">IDR ???</p>
+     </div>
+   </div>
+</section>
+<section class="product"id="product"x-data="products">
+  <h2><span>Produk</span> Furniture</h2>
+   <p id="malik">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis consequatur magnam assumenda illo.</p>
+   <div class="row">
+     <template x-for="(item, index) in items"x-key="index">
+     <div class="product-card">
+       <div class="product-icons">
+        <a href="#" @click.prevent="$store.cart.addItem(item)">
+           <svg
+  width="24"
+  height="24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="feather-sprite.svg#shopping-cart" />
+</svg>
+         </a>
+         <a href="#"class="item-detail-button"><svg
+  width="24"
+  height="24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="feather-sprite.svg#eye" class="close-icon"/>
+</svg></a>
+       </div>
+       <div x-data="{ image: item.img, name: item.name }">
+  <div class="product-images">
+    <img x-bind:src="image" :alt="name">
+  </div>
+</div>
+       <div class="product-content">
+         <h3 x-text="item.name"></h3>
+         <div class="product-stars">
+           <svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="feather-sprite.svg#star" />
+</svg>
+<svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="feather-sprite.svg#star" />
+</svg>
+<svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="feather-sprite.svg#star" />
+</svg>
+<svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="feather-sprite.svg#star" />
+</svg>
+<svg
+  width="24"
+  height="24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="feather-sprite.svg#star" />
+</svg>
+         </div>
+         <div class="product-price"><span x-text="rupiah (item.price)"></span></div>
+       </div>
+     </div>
+</template>
+   </div>
+</section>
+<section id="contact" class="contact">
+  <h2><span>Kontak</span> Saya</h2>
+   <p id="malik">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+   <div class="row">
+     <iframe src="https://maps.google.com/maps?q=Lebak%20pakis%20aji%20jepara%20rt%2001%20rw%2005&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"class="map"></iframe>
+  <form action="" id ="form-mail">
+    <div class="input-group">
+      <i data-feather ="user"></i>
+      <input type="text"placeholder="Nama">
+    </div>
+    <div class="input-group">
+      <i data-feather ="mail"></i>
+      <input type="text"placeholder="Email">
+    </div>
+    <div class="input-group">
+      <i data-feather ="phone"></i>
+      <input type="text"placeholder="No Hp">
+    </div>
+    <button type="submit" class="btn">Kirim pesan</button>
+  </form>
+   </div>
+</section>
+<footer>
+  <div class="socials">
+    <a href="#"><i data-feather="instagram"></i></a>
+    <a href="#"><i data-feather="twitter"></i></a>
+    <a href="#"><i data-feather="facebook"></i></a>
+  </div>
+  <div class="links">
+    <a href="#home">Home</a>
+    <a href="#about">Tentang Kami</a>
+    <a href="#menu">Menu</a>
+    <a href="#contact">Kontak</a>
+  </div>
+  <div class="credit">
+    <p>Created By <a href="">MalikulJafar</a> &#169; copy 2024</p>
+  </div>
+</footer>
+<div class="modal" id="item-detail-modal">
+  <div class="modal-container">
+    <a href="#"class="close-icon"><i data-feather="x"></i></a>
+    <div class="modal-content">
+      <img src="lemari.jpg" alt="produk 1">
+      <div class="product-content">
+        <h3>Lemari 2 pintu</h3>
+        <p>Lemari 2 pintu ini adalah perpaduan sempurna antara estetika dan fungsionalitas. Dengan desain yang elegan dan material berkualitas tinggi, lemari ini akan menjadi tambahan yang sempurna untuk setiap ruangan di rumah Anda.
+Lemari ini terbuat dari kayu berkualitas tinggi yang tahan lama dan mudah dirawat. Anda dapat memilih dari berbagai warna dan finishing untuk menyesuaikan dengan gaya dekorasi rumah Anda.</p>
+        <div class="product-stars">
+           <i data-feather="star" class="star-full"></i>
+           <i data-feather="star"class="star-full"></i>
+           <i data-feather="star"class="star-full"></i>
+           <i data-feather="star"class="star-full"></i>
+           <i data-feather="star"class="star-full"></i>
+         </div>
+         <div class="product-price">IDR ??? <span>IDR ???</span></div>
+         <a href="#"><i data-feather="shopping-cart"></i><span>Add to cart</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+        <script>
+            feather.replace();
+        </script>
+                <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>   
+  <script>
+            AOS.init();
+        </script>
+        <script src="main.js"></script>
+        <script src="app.js"></script>
+        </body>
+</html>
